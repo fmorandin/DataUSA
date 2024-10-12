@@ -41,7 +41,7 @@ final class StateDataViewModel: StateDataViewModelProtocol, ObservableObject {
     func fetchData() async {
         
         do {
-            let data = try await service.fetchStatesData()
+            let data = try await service.fetchStateData()
             await MainActor.run {
                 self.stateData = data.data
                 self.sourceData = data.source

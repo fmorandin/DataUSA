@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 18119E3E2CBA77030017BE8D;
 			remoteInfo = "Data USA";
 		};
-		18119E5A2CBA77040017BE8D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 18119E372CBA77030017BE8D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 18119E3E2CBA77030017BE8D;
-			remoteInfo = "Data USA";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		18119E3F2CBA77030017BE8D /* Data USA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Data USA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18119E4F2CBA77040017BE8D /* Data USATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Data USATests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18119E592CBA77040017BE8D /* Data USAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Data USAUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,11 +30,6 @@
 		18119E522CBA77040017BE8D /* Data USATests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Data USATests";
-			sourceTree = "<group>";
-		};
-		18119E5C2CBA77040017BE8D /* Data USAUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Data USAUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -62,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		18119E562CBA77040017BE8D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,7 +57,6 @@
 			children = (
 				18119E412CBA77030017BE8D /* Data USA */,
 				18119E522CBA77040017BE8D /* Data USATests */,
-				18119E5C2CBA77040017BE8D /* Data USAUITests */,
 				18119E402CBA77030017BE8D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +66,6 @@
 			children = (
 				18119E3F2CBA77030017BE8D /* Data USA.app */,
 				18119E4F2CBA77040017BE8D /* Data USATests.xctest */,
-				18119E592CBA77040017BE8D /* Data USAUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,29 +118,6 @@
 			productReference = 18119E4F2CBA77040017BE8D /* Data USATests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		18119E582CBA77040017BE8D /* Data USAUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 18119E692CBA77040017BE8D /* Build configuration list for PBXNativeTarget "Data USAUITests" */;
-			buildPhases = (
-				18119E552CBA77040017BE8D /* Sources */,
-				18119E562CBA77040017BE8D /* Frameworks */,
-				18119E572CBA77040017BE8D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				18119E5B2CBA77040017BE8D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				18119E5C2CBA77040017BE8D /* Data USAUITests */,
-			);
-			name = "Data USAUITests";
-			packageProductDependencies = (
-			);
-			productName = "Data USAUITests";
-			productReference = 18119E592CBA77040017BE8D /* Data USAUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,10 +132,6 @@
 						CreatedOnToolsVersion = 16.0;
 					};
 					18119E4E2CBA77040017BE8D = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 18119E3E2CBA77030017BE8D;
-					};
-					18119E582CBA77040017BE8D = {
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = 18119E3E2CBA77030017BE8D;
 					};
@@ -202,7 +153,6 @@
 			targets = (
 				18119E3E2CBA77030017BE8D /* Data USA */,
 				18119E4E2CBA77040017BE8D /* Data USATests */,
-				18119E582CBA77040017BE8D /* Data USAUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,13 +166,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		18119E4D2CBA77040017BE8D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		18119E572CBA77040017BE8D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,13 +189,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		18119E552CBA77040017BE8D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -260,11 +196,6 @@
 			isa = PBXTargetDependency;
 			target = 18119E3E2CBA77030017BE8D /* Data USA */;
 			targetProxy = 18119E502CBA77040017BE8D /* PBXContainerItemProxy */;
-		};
-		18119E5B2CBA77040017BE8D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 18119E3E2CBA77030017BE8D /* Data USA */;
-			targetProxy = 18119E5A2CBA77040017BE8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -402,8 +333,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -411,6 +342,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.felipemorandin.Data-USA";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -431,8 +366,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,6 +375,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.felipemorandin.Data-USA";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,10 +393,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KFQ838WW9Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.felipemorandin.Data-USATests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -473,48 +416,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KFQ838WW9Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.felipemorandin.Data-USATests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Data USA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Data USA";
-			};
-			name = Release;
-		};
-		18119E6A2CBA77040017BE8D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KFQ838WW9Y;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.felipemorandin.Data-USAUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Data USA";
-			};
-			name = Debug;
-		};
-		18119E6B2CBA77040017BE8D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KFQ838WW9Y;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.felipemorandin.Data-USAUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Data USA";
 			};
 			name = Release;
 		};
@@ -544,15 +457,6 @@
 			buildConfigurations = (
 				18119E672CBA77040017BE8D /* Debug */,
 				18119E682CBA77040017BE8D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		18119E692CBA77040017BE8D /* Build configuration list for PBXNativeTarget "Data USAUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				18119E6A2CBA77040017BE8D /* Debug */,
-				18119E6B2CBA77040017BE8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

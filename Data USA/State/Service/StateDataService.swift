@@ -9,7 +9,7 @@ import Foundation
 import os
 
 protocol StateDataServiceProtocol {
-    func fetchStatesData() async throws -> StateDataModel
+    func fetchStateData() async throws -> StateDataModel
 }
 
 struct StateDataService: StateDataServiceProtocol {
@@ -32,7 +32,7 @@ struct StateDataService: StateDataServiceProtocol {
 
     // MARK: - Public Methods
 
-    func fetchStatesData() async throws -> StateDataModel {
+    func fetchStateData() async throws -> StateDataModel {
 
         logger.notice("🛜 Starting to fetch the state data.")
 
