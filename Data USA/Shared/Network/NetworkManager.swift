@@ -7,12 +7,11 @@
 
 import Foundation
 import os
-import Combine
 
 // Protocol to make it easier to test
 protocol NetworkManagerProtocol {
 
-    func getData<T: Decodable>(for urlString: String, responseModel: T.Type) -> AnyPublisher<T, Error>
+    func getData<T: Decodable>(for urlString: String, responseModel: T.Type) async throws -> T
 }
 
 struct NetworkManager: NetworkManagerProtocol {
@@ -24,24 +23,24 @@ struct NetworkManager: NetworkManagerProtocol {
         category: String(describing: NetworkManager.self)
     )
 
-    private var cancellable = Set<AnyCancellable>()
-
     // MARK: - Public Methods
 
-    func getData<T: Decodable>(for urlString: String, responseModel: T.Type) -> AnyPublisher<T, Error> {
+    func getData<T: Decodable>(for urlString: String, responseModel: T.Type) async throws -> T {
 
-        guard let url = URL(string: urlString) else { return Fail(error: NetworkError.invalidURL).eraseToAnyPublisher() }
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.invalidURL
+        }
 
         logger.notice("🛜 Starting the request for url \(url).")
 
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .map { $0.data }
-            .decode(type: responseModel.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .retry(1)
-            .mapError({ error in
-                NetworkError.networkError(description: error.localizedDescription)
-            })
-            .eraseToAnyPublisher()
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let decodedData = try JSONDecoder().decode(responseModel.self, from: data)
+            logger.notice("🛜 Data successfully fetched and decoded.")
+            return decodedData
+        } catch {
+            logger.error("❌ Network error: \(error.localizedDescription)")
+            throw NetworkError.networkError(description: error.localizedDescription)
+        }
     }
 }

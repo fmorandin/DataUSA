@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import Combine
 import os
 
 protocol NationDataServiceProtocol {
-    func fetchNationData() -> AnyPublisher<NationDataModel, Error>
+    func fetchNationData() async throws -> NationDataModel
 }
 
 struct NationDataService: NationDataServiceProtocol {
@@ -33,10 +32,10 @@ struct NationDataService: NationDataServiceProtocol {
 
     // MARK: - Public Methods
 
-    func fetchNationData() -> AnyPublisher<NationDataModel, Error> {
+    func fetchNationData() async throws -> NationDataModel {
 
         logger.notice("🛜 Starting to fetch the nation data.")
 
-        return networkManager.getData(for: Endpoints.nation.rawValue, responseModel: NationDataModel.self)
+        return try await networkManager.getData(for: Endpoints.nation.rawValue, responseModel: NationDataModel.self)
     }
 }

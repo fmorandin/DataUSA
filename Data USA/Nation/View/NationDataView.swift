@@ -25,7 +25,9 @@ struct NationDataView: View {
             }
         }
         .onAppear {
-            viewModel.fetchData()
+            Task {
+                await viewModel.fetchData()
+            }
         }
     }
 }

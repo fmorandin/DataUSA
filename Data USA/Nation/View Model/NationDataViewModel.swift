@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import Combine
 import os
 
 protocol NationDataViewModelProtocol {
-    func fetchData()
+    func fetchData() async
 }
 
 final class NationDataViewModel: NationDataViewModelProtocol, ObservableObject {
@@ -23,8 +22,6 @@ final class NationDataViewModel: NationDataViewModelProtocol, ObservableObject {
         subsystem: Bundle.main.bundleIdentifier!,
         category: String(describing: NationDataViewModel.self)
     )
-
-    private var cancellable = Set<AnyCancellable>()
 
     // MARK: - Public Variables
 
@@ -41,22 +38,20 @@ final class NationDataViewModel: NationDataViewModelProtocol, ObservableObject {
 
     // MARK: - Public Methods
 
-    func fetchData() {
+    func fetchData() async {
 
-        service.fetchNationData()
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                    case .finished:
-                    self?.logger.info("🌎 Nation Data received correctly")
-                case .failure(let error):
-                    self?.errorMessage = "❌ Error fetching data: \(error.localizedDescription)"
-                    self?.logger.error("❌ Error fetching nation data: \(error)")
-                }
-            }, receiveValue: { [weak self] nationData in
-                self?.nationData = nationData.data
-                self?.sourceData = nationData.source
-                self?.logger.info("🌎 Nation Data received: \(nationData.data)")
-            })
-            .store(in: &cancellable)
+        do {
+            let data = try await service.fetchNationData()
+            await MainActor.run {
+                self.nationData = data.data
+                self.sourceData = data.source
+                self.logger.info("🌎 Nation Data received: \(data.data)")
+            }
+        } catch {
+            await MainActor.run {
+                self.errorMessage = "❌ Error fetching data: \(error.localizedDescription)"
+                self.logger.error("❌ Error fetching nation data: \(error)")
+            }
+        }
     }
 }

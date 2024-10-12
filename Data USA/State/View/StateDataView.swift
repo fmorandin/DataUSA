@@ -17,7 +17,9 @@ struct StateDataView: View {
             .fontWeight(.bold)
             .fontDesign(.monospaced)
             .onAppear {
-                viewModel.fetchData()
+                Task {
+                    await viewModel.fetchData()
+                }
             }
     }
 }

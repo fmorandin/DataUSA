@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import Combine
 import os
 
 protocol StateDataViewModelProtocol {
-    func fetchData()
+    func fetchData() async
 }
 
 final class StateDataViewModel: StateDataViewModelProtocol, ObservableObject {
@@ -23,8 +22,6 @@ final class StateDataViewModel: StateDataViewModelProtocol, ObservableObject {
         subsystem: Bundle.main.bundleIdentifier!,
         category: String(describing: StateDataViewModel.self)
     )
-
-    private var cancellable = Set<AnyCancellable>()
 
     // MARK: - Public Variables
 
@@ -41,22 +38,20 @@ final class StateDataViewModel: StateDataViewModelProtocol, ObservableObject {
 
     // MARK: - Public Methods
 
-    func fetchData() {
-
-        service.fetchStatesData()
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished:
-                    self?.logger.info("📍 State Data received correctly")
-                case .failure(let error):
-                    self?.errorMessage = "❌ Error fetching data: \(error.localizedDescription)"
-                    self?.logger.error("❌ Error fetching state data: \(error)")
-                }
-            }, receiveValue: { [weak self] stateData in
-                self?.stateData = stateData.data
-                self?.sourceData = stateData.source
-                self?.logger.info("📍 State Data received: \(stateData.data)")
-            })
-            .store(in: &cancellable)
+    func fetchData() async {
+        
+        do {
+            let data = try await service.fetchStatesData()
+            await MainActor.run {
+                self.stateData = data.data
+                self.sourceData = data.source
+                self.logger.info("📍 State Data received: \(data.data)")
+            }
+        } catch {
+            await MainActor.run {
+                self.errorMessage = "❌ Error fetching data: \(error.localizedDescription)"
+                self.logger.error("❌ Error fetching state data: \(error)")
+            }
+        }
     }
 }
