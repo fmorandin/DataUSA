@@ -28,9 +28,7 @@ final class NationDataServiceTests: XCTestCase {
             ],
             "source": [
                 {
-                    "measures": [
-                        "Population"
-                    ],
+                    "measures": ["Population"],
                     "annotations": {
                         "source_name": "Census Bureau",
                         "source_description": "The American Community Survey (ACS) is conducted by the US Census and sent to a portion of the population every year.",
