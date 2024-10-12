@@ -1,5 +1,5 @@
 //
-//  NationalDataModel.swift
+//  NationDataModel.swift
 //  Data USA
 //
 //  Created by Felipe Morandin on 12/10/2024.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct NationalDataModel: Codable {
-    let data: [NationalData]
+struct NationDataModel: Codable {
+    let data: [NationData]
     let source: [SourceData]
 }
 
-struct NationalData: Codable {
+struct NationData: Codable {
     let idNation: String
     let nation: String
     let idYear: Int

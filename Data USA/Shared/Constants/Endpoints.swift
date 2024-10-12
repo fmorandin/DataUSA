@@ -9,6 +9,6 @@ import Foundation
 
 enum Endpoints: String {
 
-    case national = "https://datausa.io/api/data?drilldowns=Nation&measures=Population"
+    case nation = "https://datausa.io/api/data?drilldowns=Nation&measures=Population"
     case state = "https://datausa.io/api/data?drilldowns=State&measures=Population&year=latest"
 }

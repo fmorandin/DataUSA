@@ -18,7 +18,7 @@ struct MainView: View {
                 
                 Spacer()
 
-                NavigationLink(destination: NationalDataView(), label: {
+                NavigationLink(destination: NationDataView(), label: {
                     HStack {
                         Image(systemName: "globe.americas.fill")
                         Text("National Data")

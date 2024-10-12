@@ -1,5 +1,5 @@
 //
-//  NationalDataView.swift
+//  NationDataView.swift
 //  Data USA
 //
 //  Created by Felipe Morandin on 12/10/2024.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct NationalDataView: View {
+struct NationDataView: View {
 
-    private var viewModel = NationalDataViewModel()
+    private var viewModel = NationDataViewModel()
 
     var body: some View {
-        Text("National Data")
+        Text("Nation Data")
             .font(.largeTitle)
             .fontWeight(.bold)
             .fontDesign(.monospaced)
@@ -23,5 +23,5 @@ struct NationalDataView: View {
 }
 
 #Preview {
-    NationalDataView()
+    NationDataView()
 }
