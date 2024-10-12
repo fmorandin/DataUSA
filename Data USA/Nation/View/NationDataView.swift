@@ -9,16 +9,24 @@ import SwiftUI
 
 struct NationDataView: View {
 
-    private var viewModel = NationDataViewModel()
+    @StateObject private var viewModel = NationDataViewModel()
 
     var body: some View {
-        Text("Nation Data")
-            .font(.largeTitle)
-            .fontWeight(.bold)
-            .fontDesign(.monospaced)
-            .onAppear {
-                viewModel.fetchData()
+        VStack {
+            if let errorMessage = viewModel.errorMessage {
+                Text("Error: \(errorMessage)")
+                    .foregroundColor(.red)
+                    .padding()
+            } else {
+                Text("Nation Data")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .fontDesign(.monospaced)
             }
+        }
+        .onAppear {
+            viewModel.fetchData()
+        }
     }
 }
 

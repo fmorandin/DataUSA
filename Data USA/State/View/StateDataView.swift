@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StateDataView: View {
 
-    private let viewModel = StateDataViewModel()
+    @StateObject private var viewModel = StateDataViewModel()
 
     var body: some View {
         Text("State Data")

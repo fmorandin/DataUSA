@@ -15,12 +15,6 @@ protocol NetworkManagerProtocol {
     func getData<T: Decodable>(for urlString: String, responseModel: T.Type) -> AnyPublisher<T, Error>
 }
 
-// Enum that will hold the possible error cases
-enum ErrorCases: Error {
-
-    case invalidUrl, genericError, unauthorized, decode, requestError, forbidden
-}
-
 struct NetworkManager: NetworkManagerProtocol {
 
     // MARK: - Private Variables
@@ -36,17 +30,18 @@ struct NetworkManager: NetworkManagerProtocol {
 
     func getData<T: Decodable>(for urlString: String, responseModel: T.Type) -> AnyPublisher<T, Error> {
 
-        guard let url = URL(string: urlString) else { return Fail(error: ErrorCases.invalidUrl).eraseToAnyPublisher() }
+        guard let url = URL(string: urlString) else { return Fail(error: NetworkError.invalidURL).eraseToAnyPublisher() }
 
         logger.notice("🛜 Starting the request for url \(url).")
 
         return URLSession.shared.dataTaskPublisher(for: url)
-            .catch { error in
-                Fail(error: error).eraseToAnyPublisher()
-            }
             .map { $0.data }
             .decode(type: responseModel.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
+            .retry(1)
+            .mapError({ error in
+                NetworkError.networkError(description: error.localizedDescription)
+            })
             .eraseToAnyPublisher()
     }
 }

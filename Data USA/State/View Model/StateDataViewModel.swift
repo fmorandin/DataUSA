@@ -13,7 +13,7 @@ protocol StateDataViewModelProtocol {
     func fetchData()
 }
 
-final class StateDataViewModel: StateDataViewModelProtocol {
+final class StateDataViewModel: StateDataViewModelProtocol, ObservableObject {
 
     // MARK: - Private Variables
 
