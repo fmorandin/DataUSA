@@ -1,5 +1,5 @@
 //
-//  NationalDataViewModel.swift
+//  StateDataViewModel.swift
 //  Data USA
 //
 //  Created by Felipe Morandin on 12/10/2024.
@@ -9,32 +9,32 @@ import Foundation
 import Combine
 import os
 
-protocol NationalDataViewModelProtocol {
+protocol StateDataViewModelProtocol {
     func fetchData()
 }
 
-final class NationalDataViewModel: NationalDataViewModelProtocol {
+final class StateDataViewModel: StateDataViewModelProtocol {
 
     // MARK: - Private Variables
 
-    private let service: NationalDataServiceProtocol
+    private let service: StateDataServiceProtocol
 
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
-        category: String(describing: NationalDataViewModel.self)
+        category: String(describing: StateDataViewModel.self)
     )
 
     private var cancellable = Set<AnyCancellable>()
 
     // MARK: - Public Variables
 
-    @Published var nationalData: [NationalData] = []
+    @Published var stateData: [StateData] = []
     @Published var sourceData: [SourceData] = []
     @Published var errorMessage: String?
 
     // MARK: - Init
 
-    init(service: NationalDataServiceProtocol = NationalDataService()) {
+    init(service: StateDataServiceProtocol = StateDataService()) {
 
         self.service = service
     }
@@ -43,19 +43,19 @@ final class NationalDataViewModel: NationalDataViewModelProtocol {
 
     func fetchData() {
 
-        service.fetchNationalData()
+        service.fetchStatesData()
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
-                    case .finished:
-                    self?.logger.info("National Data received correctly")
+                case .finished:
+                    self?.logger.info("State Data received correctly")
                 case .failure(let error):
                     self?.errorMessage = "Error fetching data: \(error.localizedDescription)"
-                    self?.logger.error("Error fetching national data: \(error)")
+                    self?.logger.error("Error fetching state data: \(error)")
                 }
-            }, receiveValue: { [weak self] nationalData in
-                self?.nationalData = nationalData.data
-                self?.sourceData = nationalData.source
-                self?.logger.info("National Data received: \(nationalData.data)")
+            }, receiveValue: { [weak self] stateData in
+                self?.stateData = stateData.data
+                self?.sourceData = stateData.source
+                self?.logger.info("State Data received: \(stateData.data)")
             })
             .store(in: &cancellable)
     }

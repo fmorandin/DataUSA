@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct StateDataView: View {
+
+    private let viewModel = StateDataViewModel()
+
     var body: some View {
         Text("State Data")
             .font(.largeTitle)
             .fontWeight(.bold)
             .fontDesign(.monospaced)
+            .onAppear {
+                viewModel.fetchData()
+            }
     }
 }
 
