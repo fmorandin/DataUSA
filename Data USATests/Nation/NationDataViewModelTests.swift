@@ -67,6 +67,7 @@ final class NationDataViewModelTests: XCTestCase {
     }
 
     func testNationDataFailure() async throws {
+
         // Given
         let mockService = MockNationDataService(mockError: NetworkError.networkError(description: "Mock Error"))
         viewModel = NationDataViewModel(service: mockService)

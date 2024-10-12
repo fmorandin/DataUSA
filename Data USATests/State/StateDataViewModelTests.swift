@@ -20,6 +20,7 @@ final class StateDataViewModelTests: XCTestCase {
 
     func testFetchStateDataViewModelSuccess() async throws {
 
+        // Given
         let mockJSON = """
         {
             "data": [
