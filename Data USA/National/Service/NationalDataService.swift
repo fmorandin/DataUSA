@@ -10,7 +10,7 @@ import Combine
 import os
 
 protocol NationalDataServiceProtocol {
-    func fetchNationalData() -> AnyPublisher<NationalData, Error>
+    func fetchNationalData() -> AnyPublisher<NationalDataModel, Error>
 }
 
 struct NationalDataService: NationalDataServiceProtocol {
@@ -33,10 +33,10 @@ struct NationalDataService: NationalDataServiceProtocol {
 
     // MARK: - Public Methods
 
-    func fetchNationalData() -> AnyPublisher<NationalData, Error> {
+    func fetchNationalData() -> AnyPublisher<NationalDataModel, Error> {
 
         logger.notice("🛜 Starting to fetch the national data.")
 
-        return networkManager.getData(for: Endpoints.national.rawValue, responseModel: NationalData.self)
+        return networkManager.getData(for: Endpoints.national.rawValue, responseModel: NationalDataModel.self)
     }
 }

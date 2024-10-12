@@ -36,9 +36,9 @@ struct NetworkManager: NetworkManagerProtocol {
 
     func getData<T: Decodable>(for urlString: String, responseModel: T.Type) -> AnyPublisher<T, Error> {
 
-        logger.notice("🛜 Starting the request.")
-
         guard let url = URL(string: urlString) else { return Fail(error: ErrorCases.invalidUrl).eraseToAnyPublisher() }
+
+        logger.notice("🛜 Starting the request for url \(url).")
 
         return URLSession.shared.dataTaskPublisher(for: url)
             .catch { error in
@@ -46,7 +46,7 @@ struct NetworkManager: NetworkManagerProtocol {
             }
             .map { $0.data }
             .decode(type: responseModel.self, decoder: JSONDecoder())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 struct NationalDataModel: Codable {
     let data: [NationalData]
-    let source: SourceData
+    let source: [SourceData]
 }
 
 struct NationalData: Codable {
@@ -22,34 +22,25 @@ struct NationalData: Codable {
 
     enum CodingKeys: String, CodingKey {
         case idNation = "ID Nation"
+        case nation = "Nation"
         case idYear = "ID Year"
+        case year = "Year"
+        case population = "Population"
         case slugNation = "Slug Nation"
-        case nation, year, population
     }
 }
 
 struct SourceData: Codable {
     let measures: [String]
     let annotations: Annotation
-    let name: String
-    let substitutions: [String]
 }
 
 struct Annotation: Codable {
     let sourceName: String
     let sourceDescription: String
-    let datasetName: String
-    let datasetLink: String
-    let tableId: String
-    let topic: String
-    let subtopic: String
 
     enum CodingKeys: String, CodingKey {
         case sourceName = "source_name"
         case sourceDescription = "source_description"
-        case datasetName = "dataset_name"
-        case datasetLink = "data_link"
-        case tableId = "table_id"
-        case topic, subtopic
     }
 }
