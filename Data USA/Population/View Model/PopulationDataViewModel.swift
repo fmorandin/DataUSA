@@ -1,5 +1,5 @@
 //
-//  NationDataViewModel.swift
+//  PopulationDataViewModel.swift
 //  Data USA
 //
 //  Created by Felipe Morandin on 12/10/2024.
@@ -8,42 +8,45 @@
 import Foundation
 import os
 
-protocol NationDataViewModelProtocol {
-    func fetchData() async
+protocol PopulationDataViewModelProtocol {
+    func fetchData(scope: ScopeOptions, timeInterval: TimeIntervalOptions?) async
 }
 
-final class NationDataViewModel: NationDataViewModelProtocol, ObservableObject {
+final class PopulationDataViewModel: PopulationDataViewModelProtocol, ObservableObject {
 
     // MARK: - Private Variables
 
-    private let service: NationDataServiceProtocol
+    private let service: PopulationDataServiceProtocol
 
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
-        category: String(describing: NationDataViewModel.self)
+        category: String(describing: PopulationDataViewModel.self)
     )
 
     // MARK: - Public Variables
 
-    @Published var nationData: [NationData] = []
+    @Published var populationData: [PopulationData] = []
     @Published var sourceData: [SourceData] = []
     @Published var errorMessage: String?
 
+    var scope: ScopeOptions = .nation
+    var timeInterval: TimeIntervalOptions?
+
     // MARK: - Init
 
-    init(service: NationDataServiceProtocol = NationDataService()) {
+    init(service: PopulationDataServiceProtocol = PopulationDataService()) {
 
         self.service = service
     }
 
     // MARK: - Public Methods
 
-    func fetchData() async {
+    func fetchData(scope: ScopeOptions, timeInterval: TimeIntervalOptions?) async {
 
         do {
-            let data = try await service.fetchNationData()
+            let data = try await service.fetchPopulationData(scope: scope, timeInterval: timeInterval)
             await MainActor.run {
-                self.nationData = data.data
+                self.populationData = data.data
                 self.sourceData = data.source
                 self.logger.info("🌎 Nation Data received: \(data.data)")
             }

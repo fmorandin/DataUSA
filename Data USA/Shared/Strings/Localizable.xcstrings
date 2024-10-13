@@ -21,7 +21,21 @@
         }
       }
     },
+    "Get Data" : {
+
+    },
+    "Location:" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Localidade:"
+          }
+        }
+      }
+    },
     "Nation Data" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -31,17 +45,8 @@
         }
       }
     },
-    "Nation:" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "País:"
-          }
-        }
-      }
-    },
     "National Data" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -61,6 +66,12 @@
         }
       }
     },
+    "Period:" : {
+
+    },
+    "Population Data" : {
+
+    },
     "Population:" : {
       "localizations" : {
         "pt-BR" : {
@@ -71,27 +82,8 @@
         }
       }
     },
-    "Search by State" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar por Estado"
-          }
-        }
-      }
-    },
-    "Search by Year" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar por Ano"
-          }
-        }
-      }
+    "Scope" : {
+
     },
     "Select the data you want to see" : {
       "localizations" : {
@@ -113,25 +105,8 @@
         }
       }
     },
-    "State Data" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dados Estaduais: %@"
-          }
-        }
-      }
-    },
-    "State:" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Estado:"
-          }
-        }
-      }
+    "Time Interval" : {
+
     },
     "Year:" : {
       "localizations" : {

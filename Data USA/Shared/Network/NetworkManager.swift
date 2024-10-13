@@ -11,7 +11,7 @@ import os
 // Protocol to make it easier to test
 protocol NetworkManagerProtocol {
 
-    func getData<T: Decodable>(for urlString: String, responseModel: T.Type) async throws -> T
+    func getData<T: Decodable>(for url: URL?, responseModel: T.Type) async throws -> T
 }
 
 struct NetworkManager: NetworkManagerProtocol {
@@ -25,9 +25,9 @@ struct NetworkManager: NetworkManagerProtocol {
 
     // MARK: - Public Methods
 
-    func getData<T: Decodable>(for urlString: String, responseModel: T.Type) async throws -> T {
+    func getData<T: Decodable>(for url: URL?, responseModel: T.Type) async throws -> T {
 
-        guard let url = URL(string: urlString) else {
+        guard let url else {
             throw NetworkError.invalidURL
         }
 

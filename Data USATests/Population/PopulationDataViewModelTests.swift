@@ -1,5 +1,5 @@
 //
-//  NationDataViewModelTests.swift
+//  PopulationDataViewModelTests.swift
 //  Data USATests
 //
 //  Created by Felipe Morandin on 12/10/2024.
@@ -8,9 +8,9 @@
 import XCTest
 @testable import Data_USA
 
-final class NationDataViewModelTests: XCTestCase {
+final class PopulationDataViewModelTests: XCTestCase {
 
-    var viewModel: NationDataViewModel!
+    var viewModel: PopulationDataViewModel!
 
     override func tearDown() {
         viewModel = nil
@@ -44,19 +44,18 @@ final class NationDataViewModelTests: XCTestCase {
             ]
         }
         """.data(using: .utf8)!
-        let mockService = MockNationDataService(mockData: mockJSON)
-        viewModel = NationDataViewModel(service: mockService)
+        let mockService = MockPopulationDataService(mockData: mockJSON)
+        viewModel = PopulationDataViewModel(service: mockService)
 
         // When
-        await viewModel.fetchData()
+        await viewModel.fetchData(scope: .nation, timeInterval: nil)
 
         // Then
-        XCTAssertEqual(viewModel.nationData.first?.idNation, "01000US")
-        XCTAssertEqual(viewModel.nationData.first?.nation, "United States")
-        XCTAssertEqual(viewModel.nationData.first?.idYear, 2022)
-        XCTAssertEqual(viewModel.nationData.first?.year, "2022")
-        XCTAssertEqual(viewModel.nationData.first?.population, 331097593)
-        XCTAssertEqual(viewModel.nationData.first?.slugNation, "united-states")
+        XCTAssertEqual(viewModel.populationData.first?.idLocation, "01000US")
+        XCTAssertEqual(viewModel.populationData.first?.location, "United States")
+        XCTAssertEqual(viewModel.populationData.first?.idYear, 2022)
+        XCTAssertEqual(viewModel.populationData.first?.year, "2022")
+        XCTAssertEqual(viewModel.populationData.first?.population, 331097593)
 
         XCTAssertEqual(viewModel.sourceData.first?.measures.first, "Population")
         XCTAssertEqual(viewModel.sourceData.first?.annotations.sourceName, "Census Bureau")
@@ -69,12 +68,12 @@ final class NationDataViewModelTests: XCTestCase {
     func testNationDataFailure() async throws {
 
         // Given
-        let mockService = MockNationDataService(mockError: NetworkError.networkError(description: "Mock Error"))
-        viewModel = NationDataViewModel(service: mockService)
+        let mockService = MockPopulationDataService(mockError: NetworkError.networkError(description: "Mock Error"))
+        viewModel = PopulationDataViewModel(service: mockService)
 
 
         // When & Then
-        await viewModel.fetchData()
+        await viewModel.fetchData(scope: .nation, timeInterval: nil)
 
         XCTAssertEqual(viewModel.errorMessage, "❌ Error fetching data: Mock Error")
     }
