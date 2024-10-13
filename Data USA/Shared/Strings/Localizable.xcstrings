@@ -31,12 +31,12 @@
         }
       }
     },
-    "Nation: %@" : {
+    "Nation:" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "País: %@"
+            "value" : "País:"
           }
         }
       }
@@ -61,12 +61,12 @@
         }
       }
     },
-    "Population: %lld" : {
+    "Population:" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "População: %lld"
+            "value" : "População:"
           }
         }
       }
@@ -101,6 +101,16 @@
         }
       }
     },
+    "Source:" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonte:"
+          }
+        }
+      }
+    },
     "State Data" : {
       "localizations" : {
         "pt-BR" : {
@@ -111,22 +121,22 @@
         }
       }
     },
-    "State: %@" : {
+    "State:" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estado: %@"
+            "value" : "Estado:"
           }
         }
       }
     },
-    "Year: %@" : {
+    "Year:" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ano: %@"
+            "value" : "Ano:"
           }
         }
       }

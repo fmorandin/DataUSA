@@ -46,13 +46,42 @@ struct NationDataView: View {
                 if !filteredData.isEmpty {
                     List(filteredData, id: \.idYear) { data in
                         VStack(alignment: .leading) {
-                            Text(String(localized: "Nation: \(data.nation)"))
-                            Text(String(localized: "Year: \(data.year)"))
-                            Text(String(localized:"Population: \(data.population)"))
+                            HStack {
+                                Text(String(localized: "Nation:"))
+                                    .bold()
+                                Text(data.nation)
+                            }
+                            HStack {
+                                Text(String(localized: "Year:"))
+                                    .bold()
+                                Text(data.year)
+                            }
+                            HStack {
+                                Text(String(localized:"Population:"))
+                                    .bold()
+                                Text(String(data.population))
+                            }
                         }
-                        .padding()
+                        .padding(.vertical)
                     }
                     .scrollContentBackground(.hidden)
+
+                    if let sourceName = viewModel.sourceData.first?.annotations.sourceName,
+                       let sourceDescription = viewModel.sourceData.first?.annotations.sourceDescription {
+                        VStack(alignment: .leading, spacing: 5) {
+                            HStack {
+                                Text(String(localized: "Source:"))
+                                    .bold()
+                                Text(sourceName)
+                            }
+
+                            Text(sourceDescription)
+
+                        }
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding()
+                    }
                 } else {
                     if #available(iOS 17.0, *) {
                         ContentUnavailableView(
