@@ -51,12 +51,32 @@
         }
       }
     },
+    "No Data Found" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhum Resultado Encontrato"
+          }
+        }
+      }
+    },
     "Population: %lld" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "População: %lld"
+          }
+        }
+      }
+    },
+    "Search by Year" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar por ano"
           }
         }
       }

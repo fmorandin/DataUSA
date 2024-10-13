@@ -9,35 +9,62 @@ import SwiftUI
 
 struct NationDataView: View {
 
+    // MARK: - State Public Variables
+
     @StateObject var viewModel = NationDataViewModel()
+
+    // MARK: - State Private Variables
+
+    @State private var searchText: String = ""
+
+    // MARK: - Private Variables
+
+    private var filteredData: [NationData] {
+        if searchText.isEmpty {
+            return viewModel.nationData
+        } else {
+            return viewModel.nationData.filter { $0.year.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+
+    // MARK: - UI
 
     var body: some View {
         VStack {
-
-            Text(String(localized: "Nation Data"))
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .fontDesign(.monospaced)
-                .padding(.top)
-
             if let errorMessage = viewModel.errorMessage {
                 Text(String(localized: "Error: \(errorMessage)"))
                     .foregroundColor(.red)
                     .padding()
             } else {
-                List(viewModel.nationData, id: \.idYear) { data in
-                    VStack(alignment: .leading) {
-                        Text(String(localized: "Nation: \(data.nation)"))
-                        Text(String(localized: "Year: \(data.year)"))
-                        Text(String(localized:"Population: \(data.population)"))
+                if filteredData.count > 1 {
+                    List(filteredData, id: \.idYear) { data in
+                        VStack(alignment: .leading) {
+                            Text(String(localized: "Nation: \(data.nation)"))
+                            Text(String(localized: "Year: \(data.year)"))
+                            Text(String(localized:"Population: \(data.population)"))
+                        }
+                        .listRowBackground(Color.black.opacity(0.1))
+                        .padding()
                     }
-                    .listRowBackground(Color.black.opacity(0.1))
-                    .padding()
+                    .searchable(
+                        text: $searchText,
+                        prompt: String(localized: "Search by Year")
+                    )
+                    .scrollContentBackground(.hidden)
+                } else {
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView(
+                            String(localized: "No Data Found"),
+                            systemImage: "exclamationmark.triangle.fill"
+                        )
+                    } else {
+                        EmptyView()
+                    }
                 }
-                .scrollContentBackground(.hidden)
-                .padding()
             }
         }
+        .navigationTitle(String(localized: "Nation Data"))
+        .navigationBarTitleDisplayMode(.large)
         .background(Color.black.opacity(0.1))
         .onAppear {
             Task {
