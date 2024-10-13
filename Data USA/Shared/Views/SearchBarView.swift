@@ -12,6 +12,7 @@ struct SearchBarView: View {
 
     var prompt: String
     var searchText: Binding<String>
+    var isFocused: FocusState<Bool>.Binding
 
     // MARK: - UI
 
@@ -21,6 +22,7 @@ struct SearchBarView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.top)
                 .padding(.horizontal)
+                .focused(isFocused)
         }
     }
 }

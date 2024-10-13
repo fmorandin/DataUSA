@@ -16,6 +16,7 @@ struct StateDataView: View {
     // MARK: - State Private Variables
 
     @State private var searchText: String = ""
+    @FocusState private var isTextFieldFocused: Bool
 
     // MARK: - Private Variables
 
@@ -31,7 +32,7 @@ struct StateDataView: View {
 
     var body: some View {
         VStack {
-            SearchBarView(prompt: "Search by State", searchText: $searchText)
+            SearchBarView(prompt: "Search by State", searchText: $searchText, isFocused: $isTextFieldFocused)
 
             if let errorMessage = viewModel.errorMessage {
                 Text(String(localized: "Error: \(errorMessage)"))
@@ -81,6 +82,9 @@ struct StateDataView: View {
             Task {
                 await viewModel.fetchData()
             }
+        }
+        .onTapGesture {
+            isTextFieldFocused = false
         }
     }
 }

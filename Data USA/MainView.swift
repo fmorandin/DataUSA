@@ -30,7 +30,7 @@ struct MainView: View {
                     .font(.callout)
                     .padding()
                     .background(.gray.opacity(0.1))
-                    .foregroundColor(.purple)
+                    .foregroundColor(.blue)
                     .cornerRadius(10)
                 })
                 .padding(.bottom)
