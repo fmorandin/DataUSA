@@ -31,12 +31,19 @@ struct NationDataView: View {
 
     var body: some View {
         VStack {
+            HStack {
+                TextField("Search by Year", text: $searchText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.top)
+                    .padding(.horizontal)
+            }
+
             if let errorMessage = viewModel.errorMessage {
                 Text(String(localized: "Error: \(errorMessage)"))
                     .foregroundColor(.red)
                     .padding()
             } else {
-                if filteredData.count > 1 {
+                if !filteredData.isEmpty {
                     List(filteredData, id: \.idYear) { data in
                         VStack(alignment: .leading) {
                             Text(String(localized: "Nation: \(data.nation)"))
@@ -46,10 +53,6 @@ struct NationDataView: View {
                         .listRowBackground(Color.black.opacity(0.1))
                         .padding()
                     }
-                    .searchable(
-                        text: $searchText,
-                        prompt: String(localized: "Search by Year")
-                    )
                     .scrollContentBackground(.hidden)
                 } else {
                     if #available(iOS 17.0, *) {
@@ -71,6 +74,7 @@ struct NationDataView: View {
                 await viewModel.fetchData()
             }
         }
+
     }
 }
 
