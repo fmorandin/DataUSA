@@ -91,6 +91,16 @@
         }
       }
     },
+    "Select the data you want to see" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecione a informação que quer ver"
+          }
+        }
+      }
+    },
     "State Data" : {
       "localizations" : {
         "pt-BR" : {
