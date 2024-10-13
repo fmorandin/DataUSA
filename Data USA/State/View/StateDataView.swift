@@ -14,22 +14,22 @@ struct StateDataView: View {
     var body: some View {
         VStack {
 
-            Text("State Data")
+            Text(String(localized: "State Data"))
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .fontDesign(.monospaced)
                 .padding(.top)
 
             if let errorMessage = viewModel.errorMessage {
-                Text("Error: \(errorMessage)")
+                Text(String(localized: "Error: \(errorMessage)"))
                     .foregroundColor(.red)
                     .padding()
             } else {
                 List(viewModel.stateData, id: \.idState) { data in
                     VStack(alignment: .leading) {
-                        Text("State: \(data.state)")
-                        Text("Year: \(data.year)")
-                        Text("Population: \(data.population)")
+                        Text(String(localized: "State: \(data.state)"))
+                        Text(String(localized: "Year: \(data.year)"))
+                        Text(String(localized: "Population: \(data.population)"))
                     }
                     .listRowBackground(Color.black.opacity(0.1))
                     .padding()
