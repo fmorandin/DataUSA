@@ -31,12 +31,7 @@ struct StateDataView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                TextField("Search by State", text: $searchText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.top)
-                    .padding(.horizontal)
-            }
+            SearchBarView(prompt: "Search by State", searchText: $searchText)
 
             if let errorMessage = viewModel.errorMessage {
                 Text(String(localized: "Error: \(errorMessage)"))
@@ -66,22 +61,8 @@ struct StateDataView: View {
                     }
                     .scrollContentBackground(.hidden)
 
-                    if let sourceName = viewModel.sourceData.first?.annotations.sourceName,
-                       let sourceDescription = viewModel.sourceData.first?.annotations.sourceDescription {
-                        VStack(alignment: .leading, spacing: 5) {
-                            HStack {
-                                Text(String(localized: "Source:"))
-                                    .bold()
-                                Text(sourceName)
-                            }
+                    SourceView(sourceData: viewModel.sourceData.first)
 
-                            Text(sourceDescription)
-
-                        }
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .padding()
-                    }
                 } else {
                     if #available(iOS 17.0, *) {
                         ContentUnavailableView(
