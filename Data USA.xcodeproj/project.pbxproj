@@ -25,11 +25,17 @@
 		188FA14A2CBBD34B002C79E6 /* Exceptions for "Data USATests" folder in "Data USA" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Mock/MockNationDataService.swift,
 				Mock/MockNetworkManager.swift,
-				Mock/MockStateDataService.swift,
+				Mock/MockPopulationDataService.swift,
 			);
 			target = 18119E3E2CBA77030017BE8D /* Data USA */;
+		};
+		18FC2A672CBC65D400EFB850 /* Exceptions for "Data USATests" folder in "Data USATests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Data USA.xctestplan",
+			);
+			target = 18119E4E2CBA77040017BE8D /* Data USATests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -43,6 +49,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				188FA14A2CBBD34B002C79E6 /* Exceptions for "Data USATests" folder in "Data USA" target */,
+				18FC2A672CBC65D400EFB850 /* Exceptions for "Data USATests" folder in "Data USATests" target */,
 			);
 			path = "Data USATests";
 			sourceTree = "<group>";

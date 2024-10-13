@@ -13,7 +13,7 @@ struct MockNetworkManager: NetworkManagerProtocol {
     var mockData: Data? = nil
     var mockError: Error? = nil
 
-    func getData<T>(for urlString: String, responseModel: T.Type) async throws -> T where T : Decodable {
+    func getData<T: Decodable>(for url: URL?, responseModel: T.Type) async throws -> T {
 
         if let error = mockError {
             throw error

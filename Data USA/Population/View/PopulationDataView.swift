@@ -1,5 +1,5 @@
 //
-//  NationDataView.swift
+//  PopulationDataView.swift
 //  Data USA
 //
 //  Created by Felipe Morandin on 12/10/2024.
@@ -7,24 +7,32 @@
 
 import SwiftUI
 
-struct NationDataView: View {
+struct PopulationDataView: View {
 
     // MARK: - State Public Variables
 
-    @StateObject var viewModel = NationDataViewModel()
+    @StateObject var viewModel = PopulationDataViewModel()
 
     // MARK: - State Private Variables
 
     @State private var searchText: String = ""
     @FocusState private var isTextFieldFocused: Bool
 
+    // MARK: - Public Variables
+
+    var scope: ScopeOptions = .nation
+    var timeInterval: TimeIntervalOptions?
+
     // MARK: - Private Variables
 
-    private var filteredData: [NationData] {
+    private var filteredData: [PopulationData] {
         if searchText.isEmpty {
-            return viewModel.nationData
+            return viewModel.populationData
         } else {
-            return viewModel.nationData.filter { $0.year.localizedCaseInsensitiveContains(searchText) }
+            return viewModel.populationData.filter { item in
+                item.year.localizedCaseInsensitiveContains(searchText) ||
+                item.location.localizedCaseInsensitiveContains(searchText)
+            }
         }
     }
 
@@ -32,7 +40,7 @@ struct NationDataView: View {
 
     var body: some View {
         VStack {
-            SearchBarView(prompt: "Search by Year", searchText: $searchText, isFocused: $isTextFieldFocused)
+            SearchBarView(prompt: "Search by Year or Location", searchText: $searchText, isFocused: $isTextFieldFocused)
 
             if let errorMessage = viewModel.errorMessage {
                 Text(String(localized: "Error: \(errorMessage)"))
@@ -40,12 +48,12 @@ struct NationDataView: View {
                     .padding()
             } else {
                 if !filteredData.isEmpty {
-                    List(filteredData, id: \.idYear) { data in
+                    List(filteredData, id: \.id) { data in
                         VStack(alignment: .leading) {
                             HStack {
-                                Text(String(localized: "Nation:"))
+                                Text(String(localized: "Location:"))
                                     .bold()
-                                Text(data.nation)
+                                Text(data.location)
                             }
                             HStack {
                                 Text(String(localized: "Year:"))
@@ -76,11 +84,11 @@ struct NationDataView: View {
                 }
             }
         }
-        .navigationTitle(String(localized: "Nation Data"))
+        .navigationTitle(String(localized: "Population Data"))
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
             Task {
-                await viewModel.fetchData()
+                await viewModel.fetchData(scope: scope, timeInterval: timeInterval)
             }
         }
         .onTapGesture {
@@ -129,6 +137,6 @@ struct NationDataView: View {
             ]
         }
         """.data(using: .utf8)!
-    let mockNetworkManager = MockNationDataService(mockData: mockData)
-    NationDataView(viewModel: NationDataViewModel(service: mockNetworkManager))
+    let mockNetworkManager = MockPopulationDataService(mockData: mockData)
+    PopulationDataView(viewModel: PopulationDataViewModel(service: mockNetworkManager))
 }

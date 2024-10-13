@@ -1,5 +1,5 @@
 //
-//  NationDataServiceTests.swift
+//  PopulationDataServiceTests.swift
 //  Data USATests
 //
 //  Created by Felipe Morandin on 12/10/2024.
@@ -8,9 +8,9 @@
 import XCTest
 @testable import Data_USA
 
-final class NationDataServiceTests: XCTestCase {
+final class PopulationDataServiceTests: XCTestCase {
 
-    var service: NationDataService!
+    var service: PopulationDataService!
 
     override func tearDown() {
 
@@ -46,17 +46,16 @@ final class NationDataServiceTests: XCTestCase {
         }
         """.data(using: .utf8)!
         let mockNetworkManager = MockNetworkManager(mockData: mockData)
-        service = NationDataService(networkManager: mockNetworkManager)
+        service = PopulationDataService(networkManager: mockNetworkManager)
 
         do {
-            let result = try await service.fetchNationData()
+            let result = try await service.fetchPopulationData(scope: .nation, timeInterval: nil)
 
-            XCTAssertEqual(result.data.first?.idNation, "01000US")
-            XCTAssertEqual(result.data.first?.nation, "United States")
+            XCTAssertEqual(result.data.first?.idLocation, "01000US")
+            XCTAssertEqual(result.data.first?.location, "United States")
             XCTAssertEqual(result.data.first?.idYear, 2022)
             XCTAssertEqual(result.data.first?.year, "2022")
             XCTAssertEqual(result.data.first?.population, 331097593)
-            XCTAssertEqual(result.data.first?.slugNation, "united-states")
 
             XCTAssertEqual(result.source.first?.measures.first, "Population")
             XCTAssertEqual(result.source.first?.annotations.sourceName, "Census Bureau")
@@ -72,10 +71,10 @@ final class NationDataServiceTests: XCTestCase {
     func testFetchNationDataServiceFailure() async throws {
 
         let mockNetworkManager = MockNetworkManager(mockError: NetworkError.invalidURL)
-        service = NationDataService(networkManager: mockNetworkManager)
+        service = PopulationDataService(networkManager: mockNetworkManager)
 
         do {
-            let _ = try await service.fetchNationData()
+            let _ = try await service.fetchPopulationData(scope: .nation, timeInterval: nil)
             XCTFail("Expected to throw, but did not.")
         } catch {
             XCTAssertEqual(error.localizedDescription, "The URL is invalid.")
