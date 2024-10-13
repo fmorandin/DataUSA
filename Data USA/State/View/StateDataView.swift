@@ -31,7 +31,6 @@ struct StateDataView: View {
 
     var body: some View {
         VStack {
-
             HStack {
                 TextField("Search by State", text: $searchText)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -51,7 +50,6 @@ struct StateDataView: View {
                             Text(String(localized: "Year: \(data.year)"))
                             Text(String(localized: "Population: \(data.population)"))
                         }
-                        .listRowBackground(Color.black.opacity(0.1))
                         .padding()
                     }
                     .scrollContentBackground(.hidden)
@@ -69,7 +67,6 @@ struct StateDataView: View {
         }
         .navigationTitle(String(localized: "State Data"))
         .navigationBarTitleDisplayMode(.large)
-        .background(Color.black.opacity(0.1))
         .onAppear {
             Task {
                 await viewModel.fetchData()

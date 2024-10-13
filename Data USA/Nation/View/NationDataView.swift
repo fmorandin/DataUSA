@@ -50,7 +50,6 @@ struct NationDataView: View {
                             Text(String(localized: "Year: \(data.year)"))
                             Text(String(localized:"Population: \(data.population)"))
                         }
-                        .listRowBackground(Color.black.opacity(0.1))
                         .padding()
                     }
                     .scrollContentBackground(.hidden)
@@ -68,7 +67,6 @@ struct NationDataView: View {
         }
         .navigationTitle(String(localized: "Nation Data"))
         .navigationBarTitleDisplayMode(.large)
-        .background(Color.black.opacity(0.1))
         .onAppear {
             Task {
                 await viewModel.fetchData()

@@ -11,13 +11,6 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Data USA")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .fontDesign(.monospaced)
-                
-                Spacer()
-
                 NavigationLink(destination: NationDataView(), label: {
                     HStack {
                         Image(systemName: "globe.americas.fill")
@@ -42,13 +35,11 @@ struct MainView: View {
                     .foregroundColor(.purple)
                     .cornerRadius(10)
                 })
-
-                Spacer()
             }
-            .padding()
+            .navigationTitle(String(localized: "Data USA"))
+            .navigationBarTitleDisplayMode(.large)
         }
     }
-
 }
 
 #Preview {
