@@ -56,7 +56,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nenhum Resultado Encontrato"
+            "value" : "Nenhum Resultado Encontrado"
           }
         }
       }
@@ -71,12 +71,22 @@
         }
       }
     },
+    "Search by State" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar por Estado"
+          }
+        }
+      }
+    },
     "Search by Year" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar por ano"
+            "value" : "Buscar por Ano"
           }
         }
       }

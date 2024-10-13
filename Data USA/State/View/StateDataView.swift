@@ -9,35 +9,66 @@ import SwiftUI
 
 struct StateDataView: View {
 
+    // MARK: - State Public Variables
+    
     @StateObject var viewModel = StateDataViewModel()
+
+    // MARK: - State Private Variables
+
+    @State private var searchText: String = ""
+
+    // MARK: - Private Variables
+
+    private var filteredData: [StateData] {
+        if searchText.isEmpty {
+            return viewModel.stateData
+        } else {
+            return viewModel.stateData.filter { $0.state.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+
+    // MARK: - UI
 
     var body: some View {
         VStack {
 
-            Text(String(localized: "State Data"))
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .fontDesign(.monospaced)
-                .padding(.top)
+            HStack {
+                TextField("Search by State", text: $searchText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.top)
+                    .padding(.horizontal)
+            }
 
             if let errorMessage = viewModel.errorMessage {
                 Text(String(localized: "Error: \(errorMessage)"))
                     .foregroundColor(.red)
                     .padding()
             } else {
-                List(viewModel.stateData, id: \.idState) { data in
-                    VStack(alignment: .leading) {
-                        Text(String(localized: "State: \(data.state)"))
-                        Text(String(localized: "Year: \(data.year)"))
-                        Text(String(localized: "Population: \(data.population)"))
+                if !filteredData.isEmpty {
+                    List(filteredData, id: \.idState) { data in
+                        VStack(alignment: .leading) {
+                            Text(String(localized: "State: \(data.state)"))
+                            Text(String(localized: "Year: \(data.year)"))
+                            Text(String(localized: "Population: \(data.population)"))
+                        }
+                        .listRowBackground(Color.black.opacity(0.1))
+                        .padding()
                     }
-                    .listRowBackground(Color.black.opacity(0.1))
-                    .padding()
+                    .scrollContentBackground(.hidden)
+                } else {
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView(
+                            String(localized: "No Data Found"),
+                            systemImage: "exclamationmark.triangle.fill"
+                        )
+                    } else {
+                        EmptyView()
+                    }
                 }
-                .scrollContentBackground(.hidden)
-                .padding()
             }
         }
+        .navigationTitle(String(localized: "State Data"))
+        .navigationBarTitleDisplayMode(.large)
         .background(Color.black.opacity(0.1))
         .onAppear {
             Task {
