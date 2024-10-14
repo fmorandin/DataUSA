@@ -12,11 +12,13 @@ struct PopulationDataView: View {
     // MARK: - State Public Variables
 
     @StateObject var viewModel = PopulationDataViewModel()
+    @Environment(\.presentationMode) var presentationMode
 
     // MARK: - State Private Variables
 
     @State private var searchText = ""
     @State private var isLoading = false
+    @State private var hasErrors = false
     @FocusState private var isTextFieldFocused: Bool
 
     // MARK: - Public Variables
@@ -47,33 +49,28 @@ struct PopulationDataView: View {
                     .progressViewStyle(.circular)
                     .padding()
             } else {
-                if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                        .padding()
-                } else {
+
+                if !filteredData.isEmpty {
                     SearchBarView(
                         prompt: "Search by Year or Location",
                         searchText: $searchText, isFocused: $isTextFieldFocused
                     )
+                    
+                    List(filteredData, id: \.id) { data in
+                        PopulationView(data: data)
+                    }
+                    .scrollContentBackground(.hidden)
 
-                    if !filteredData.isEmpty {
-                        List(filteredData, id: \.id) { data in
-                            PopulationView(data: data)
-                        }
-                        .scrollContentBackground(.hidden)
+                    SourceView(sourceData: viewModel.sourceData.first)
 
-                        SourceView(sourceData: viewModel.sourceData.first)
-
+                } else {
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView(
+                            String(localized: "No Data Found"),
+                            systemImage: "exclamationmark.triangle.fill"
+                        )
                     } else {
-                        if #available(iOS 17.0, *) {
-                            ContentUnavailableView(
-                                String(localized: "No Data Found"),
-                                systemImage: "exclamationmark.triangle.fill"
-                            )
-                        } else {
-                            EmptyView()
-                        }
+                        EmptyView()
                     }
                 }
             }
@@ -90,6 +87,18 @@ struct PopulationDataView: View {
         .onTapGesture {
             isTextFieldFocused = false
         }
+        .onChange(of: viewModel.errorMessage ?? "") { errorMessage in
+            hasErrors = !errorMessage.isEmpty
+        }
+        .alert(isPresented: $hasErrors, content: {
+            Alert(
+                title: Text(String(localized: "Error")),
+                message: Text(viewModel.errorMessage ?? String(localized: "Sorry, something went wrong.\nPlease try again later.")),
+                dismissButton: .default(Text("OK"), action: {
+                    presentationMode.wrappedValue.dismiss()
+                })
+            )
+        })
     }
 }
 

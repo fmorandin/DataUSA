@@ -11,6 +11,16 @@
         }
       }
     },
+    "Error" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erro"
+          }
+        }
+      }
+    },
     "Get Data" : {
       "localizations" : {
         "pt-BR" : {
@@ -47,6 +57,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhum Resultado Encontrado"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
           }
         }
       }
@@ -97,6 +117,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecione a informação que quer ver"
+          }
+        }
+      }
+    },
+    "Sorry, something went wrong.\nPlease try again later." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algo de errado aconteceu.\\n Por favor, tente novamente mais tarde."
           }
         }
       }
