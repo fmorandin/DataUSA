@@ -11,18 +11,25 @@
         }
       }
     },
-    "Error: %@" : {
+    "Get Data" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erro: %@"
+            "value" : "Buscar"
           }
         }
       }
     },
-    "Get Data" : {
-
+    "Loading" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando"
+          }
+        }
+      }
     },
     "Location:" : {
       "localizations" : {
@@ -30,28 +37,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Localidade:"
-          }
-        }
-      }
-    },
-    "Nation Data" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dados Nacionais"
-          }
-        }
-      }
-    },
-    "National Data" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dados Nacionais"
           }
         }
       }
@@ -67,10 +52,24 @@
       }
     },
     "Period:" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Período"
+          }
+        }
+      }
     },
     "Population Data" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informação Populacional"
+          }
+        }
+      }
     },
     "Population:" : {
       "localizations" : {
@@ -83,7 +82,14 @@
       }
     },
     "Scope" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escopo"
+          }
+        }
+      }
     },
     "Select the data you want to see" : {
       "localizations" : {
@@ -106,7 +112,14 @@
       }
     },
     "Time Interval" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervalo de Tempo"
+          }
+        }
+      }
     },
     "Year:" : {
       "localizations" : {

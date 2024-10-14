@@ -9,6 +9,7 @@ import Foundation
 import os
 
 protocol PopulationDataViewModelProtocol {
+
     func fetchData(scope: ScopeOptions, timeInterval: TimeIntervalOptions?) async
 }
 

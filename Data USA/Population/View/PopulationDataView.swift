@@ -15,7 +15,8 @@ struct PopulationDataView: View {
 
     // MARK: - State Private Variables
 
-    @State private var searchText: String = ""
+    @State private var searchText = ""
+    @State private var isLoading = false
     @FocusState private var isTextFieldFocused: Bool
 
     // MARK: - Public Variables
@@ -40,46 +41,39 @@ struct PopulationDataView: View {
 
     var body: some View {
         VStack {
-            SearchBarView(prompt: "Search by Year or Location", searchText: $searchText, isFocused: $isTextFieldFocused)
 
-            if let errorMessage = viewModel.errorMessage {
-                Text(String(localized: "Error: \(errorMessage)"))
-                    .foregroundColor(.red)
+            if isLoading {
+                ProgressView(String(localized: "Loading"))
+                    .progressViewStyle(.circular)
                     .padding()
             } else {
-                if !filteredData.isEmpty {
-                    List(filteredData, id: \.id) { data in
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text(String(localized: "Location:"))
-                                    .bold()
-                                Text(data.location)
-                            }
-                            HStack {
-                                Text(String(localized: "Year:"))
-                                    .bold()
-                                Text(data.year)
-                            }
-                            HStack {
-                                Text(String(localized:"Population:"))
-                                    .bold()
-                                Text(String(data.population))
-                            }
-                        }
-                        .padding(.vertical)
-                    }
-                    .scrollContentBackground(.hidden)
-
-                    SourceView(sourceData: viewModel.sourceData.first)
-
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .padding()
                 } else {
-                    if #available(iOS 17.0, *) {
-                        ContentUnavailableView(
-                            String(localized: "No Data Found"),
-                            systemImage: "exclamationmark.triangle.fill"
-                        )
+                    SearchBarView(
+                        prompt: "Search by Year or Location",
+                        searchText: $searchText, isFocused: $isTextFieldFocused
+                    )
+
+                    if !filteredData.isEmpty {
+                        List(filteredData, id: \.id) { data in
+                            PopulationView(data: data)
+                        }
+                        .scrollContentBackground(.hidden)
+
+                        SourceView(sourceData: viewModel.sourceData.first)
+
                     } else {
-                        EmptyView()
+                        if #available(iOS 17.0, *) {
+                            ContentUnavailableView(
+                                String(localized: "No Data Found"),
+                                systemImage: "exclamationmark.triangle.fill"
+                            )
+                        } else {
+                            EmptyView()
+                        }
                     }
                 }
             }
@@ -87,8 +81,10 @@ struct PopulationDataView: View {
         .navigationTitle(String(localized: "Population Data"))
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
+            isLoading = true
             Task {
                 await viewModel.fetchData(scope: scope, timeInterval: timeInterval)
+                self.isLoading = false
             }
         }
         .onTapGesture {

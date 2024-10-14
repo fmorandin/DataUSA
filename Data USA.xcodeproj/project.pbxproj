@@ -22,6 +22,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		188780FF2CBDA070002425AE /* Exceptions for "Data USA" folder in "Data USATests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Population/Model/PopulationDataModel.swift,
+				Population/Service/PopulationDataService.swift,
+				"Population/View Model/PopulationDataViewModel.swift",
+				Shared/Constants/Endpoints.swift,
+				Shared/Constants/ScopeOptions.swift,
+				Shared/Constants/TimeIntervalOptions.swift,
+				Shared/Network/NetworkErrors.swift,
+				Shared/Network/NetworkManager.swift,
+			);
+			target = 18119E4E2CBA77040017BE8D /* Data USATests */;
+		};
 		188FA14A2CBBD34B002C79E6 /* Exceptions for "Data USATests" folder in "Data USA" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -30,18 +44,14 @@
 			);
 			target = 18119E3E2CBA77030017BE8D /* Data USA */;
 		};
-		18FC2A672CBC65D400EFB850 /* Exceptions for "Data USATests" folder in "Data USATests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Data USA.xctestplan",
-			);
-			target = 18119E4E2CBA77040017BE8D /* Data USATests */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		18119E412CBA77030017BE8D /* Data USA */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				188780FF2CBDA070002425AE /* Exceptions for "Data USA" folder in "Data USATests" target */,
+			);
 			path = "Data USA";
 			sourceTree = "<group>";
 		};
@@ -49,7 +59,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				188FA14A2CBBD34B002C79E6 /* Exceptions for "Data USATests" folder in "Data USA" target */,
-				18FC2A672CBC65D400EFB850 /* Exceptions for "Data USATests" folder in "Data USATests" target */,
 			);
 			path = "Data USATests";
 			sourceTree = "<group>";

@@ -8,11 +8,13 @@
 import Foundation
 
 struct PopulationDataModel: Decodable, Hashable {
+
     let data: [PopulationData]
     let source: [SourceData]
 }
 
 struct PopulationData: Decodable, Hashable {
+
     let idLocation: String
     let location: String
     let idYear: Int
@@ -34,6 +36,7 @@ struct PopulationData: Decodable, Hashable {
 
     // Custom initializer to decode conditionally
     init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         // Decode for both Nation and State, using conditional decoding
@@ -46,11 +49,13 @@ struct PopulationData: Decodable, Hashable {
 }
 
 struct SourceData: Decodable, Hashable {
+
     let measures: [String]
     let annotations: Annotation
 }
 
 struct Annotation: Decodable, Hashable {
+
     let sourceName: String
     let sourceDescription: String
 

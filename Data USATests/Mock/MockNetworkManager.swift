@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import Data_USA
 
 struct MockNetworkManager: NetworkManagerProtocol {
 
