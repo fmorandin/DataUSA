@@ -50,12 +50,12 @@ struct PopulationDataView: View {
                     .padding()
             } else {
 
+                SearchBarView(
+                    prompt: "Search by Year or Location",
+                    searchText: $searchText, isFocused: $isTextFieldFocused
+                )
+
                 if !filteredData.isEmpty {
-                    SearchBarView(
-                        prompt: "Search by Year or Location",
-                        searchText: $searchText, isFocused: $isTextFieldFocused
-                    )
-                    
                     List(filteredData, id: \.id) { data in
                         PopulationView(data: data)
                     }
